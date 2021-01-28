@@ -1,23 +1,29 @@
 import React from "react";
 import formatCurrency from "../utill";
 
-function Products({ products }) {
+function Products({ products, addToCart }) {
   const arr = [];
   return (
     <div>
       <ul className="products">
-        {products.map(({ _id, title, image, price }) => {
+        {products.map((product) => {
           return (
             <>
-              <li key={_id}>
+              <li key={product._id}>
                 <div className="product">
-                  <a href={`#${_id}`}>
-                    <img src={image} alt={image}></img>
-                    <p> {title}</p>
+                  <a href={`#${product._id}`}>
+                    <img src={product.image} alt={product.image}></img>
+                    <p> {product.title}</p>
                   </a>
                   <div className="product-price">
-                    <div>{formatCurrency(price)}</div>
-                    <button className="button primary"> Add to Cart</button>
+                    <div>{formatCurrency(product.price)}</div>
+                    <button
+                      className="button primary"
+                      onClick={() => addToCart(product)}
+                    >
+                      {" "}
+                      Add to Cart
+                    </button>
                   </div>
                 </div>
               </li>
