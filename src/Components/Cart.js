@@ -1,6 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import formatCurrency from "../utill";
-function Cart({ cartItems, removeFromCart }) {
+function Cart({ cartItems, removeFromCart, createOrder }) {
+  const [showCheckout, setShowCheckout] = useState(false);
+  const [inforCheckout, setInforCheckout] = useState();
+  const [inforOrder, setInforOrder] = useState();
+  const handleInput = (event) => {
+    event.preventDefault();
+    setInforCheckout({
+      ...inforCheckout,
+      [event.target.name]: event.target.value,
+    });
+  };
+  const handleOrder = (event) => {
+    event.preventDefault();
+    const order = {
+      ...inforCheckout,
+      cartItems: cartItems,
+    };
+    createOrder(order);
+  };
   return (
     <>
       <div>
@@ -49,9 +67,59 @@ function Cart({ cartItems, removeFromCart }) {
                     )
                   )}
                 </div>
-                <button className="button primary">Proceed</button>
+
+                <button
+                  className="button primary"
+                  onClick={() => {
+                    setShowCheckout(true);
+                  }}
+                >
+                  Proceed
+                </button>
               </div>
             </div>
+          )}
+          {showCheckout ? (
+            <div className="cart">
+              <form onSubmit={handleOrder}>
+                <ul className="form-container">
+                  <li>
+                    <label>Email</label>
+                    <input
+                      name="email"
+                      type="email"
+                      required
+                      onChange={handleInput}
+                    ></input>
+                  </li>
+                  <li>
+                    <label>Name</label>
+                    <input
+                      name="name"
+                      type="text"
+                      required
+                      onChange={handleInput}
+                    ></input>
+                  </li>
+                  <li>
+                    <label>Adress</label>
+                    <input
+                      name="address"
+                      type="text"
+                      required
+                      onChange={handleInput}
+                    ></input>
+                  </li>
+                  <li>
+                    <button className="button primary" type="submit">
+                      Create order
+                    </button>
+                  </li>
+                </ul>
+              </form>
+            </div>
+          ) : (
+            ""
           )}
         </div>
       </div>

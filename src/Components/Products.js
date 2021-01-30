@@ -2,7 +2,6 @@ import React from "react";
 import formatCurrency from "../utill";
 
 function Products({ products, addToCart }) {
-  const arr = [];
   return (
     <div>
       <ul className="products">
