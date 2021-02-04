@@ -137,6 +137,7 @@ footer {
 }
 .cart-header {
   border-bottom: 0.1rem solid #c0c0c0;
+  font-size: 1.8rem;
 }
 .cart-items {
   padding: 0;
@@ -188,4 +189,27 @@ form {
 input {
   padding: 1rem;
   border: 0.1rem solid #c0c0c0;
+}
+/* Product-detail */
+.product-details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-height: 96vh;
+}
+.product-details img {
+  max-height: 100vh;
+  max-width: 46rem;
+  margin: 0 auto;
+}
+.product-details-description {
+  flex: 1 1;
+  margin: 1rem;
+}
+.close-modal {
+  position: absolute;
+  right: 1rem;
+  top: 1.5rem;
+  z-index: 100;
+  padding: 0.5rem 0.7rem;
 }
